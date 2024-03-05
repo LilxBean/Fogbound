@@ -297,7 +297,7 @@ MonoBehaviour:
     m_Bits: 128
   _speed: 4
   _jumpingPower: 8
-  _wallJumpingPower: {x: 8, y: 4}
+  _wallJumpingPower: {x: 16, y: 4}
 --- !u!61 &987151278080955772
 BoxCollider2D:
   m_ObjectHideFlags: 0

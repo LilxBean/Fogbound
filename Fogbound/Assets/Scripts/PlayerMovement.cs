@@ -25,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
     private float _wallJumpingCounter;
     private float _wallJumpingDuration = 0.4f;
     [SerializeField] private Vector2 _wallJumpingPower = new Vector2(8f, 16f);
+    private bool _isWallClimbing;
 
     private void Update()
     {
@@ -40,6 +41,7 @@ public class PlayerMovement : MonoBehaviour
 
         WallSlide();
         WallJump();
+        ClimbWall();
     }
 
     public void Jump(InputAction.CallbackContext context)
@@ -123,6 +125,21 @@ public class PlayerMovement : MonoBehaviour
         Vector3 localScale = transform.localScale;
         localScale.x *= -1f;
         transform.localScale = localScale;
+    }
+
+    private void ClimbWall()
+    {
+        //if you run into the wall start climbing
+        if (IsWalled() && IsGrounded() && _horizontal < 0f)
+        {
+            //put delay
+            _isWallClimbing = true;
+            _rb.velocity = new Vector2(_rb.velocity.x, _speed);
+        }
+        else
+        {
+            _isWallClimbing = false;
+        }
     }
 
     public void Move(InputAction.CallbackContext context)
