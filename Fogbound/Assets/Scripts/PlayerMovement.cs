@@ -129,8 +129,15 @@ public class PlayerMovement : MonoBehaviour
 
     private void ClimbWall()
     {
-        //if you run into the wall start climbing
+        //if you run into the wall start climbing to the left
         if (IsWalled() && IsGrounded() && _horizontal < 0f)
+        {
+            //put delay
+            _isWallClimbing = true;
+            _rb.velocity = new Vector2(_rb.velocity.x, _speed);
+        }
+        //wallclimb to the right
+        else if (IsWalled() && IsGrounded() && _horizontal > 0f)
         {
             //put delay
             _isWallClimbing = true;
